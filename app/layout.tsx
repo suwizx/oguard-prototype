@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono , IBM_Plex_Sans_Thai_Looped } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -11,6 +11,12 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const ibmThai =  IBM_Plex_Sans_Thai_Looped({
+  variable:"--font-ibm",
+  subsets: ["latin"],
+  weight: ["100","200","300","400","500","600","700"]
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,9 +31,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${ibmThai.variable} antialiased bg-yellow-300 flex h-screen w-screen`}
       >
-        {children}
+        <div className="h-screen w-screen sm:hidden flex">{children}</div>
+        <div className="h-screen w-screen hidden sm:flex items-center justify-center text-xl p-4 font-bold bg-black text-white" style={ibmThai.style}>กรุณาเปิดด้วยโทรศัพท์มือถือ</div>
       </body>
     </html>
   );
