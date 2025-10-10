@@ -1,9 +1,12 @@
 "use client";
 
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Home() {
+
+  const router = useRouter()
 
   const [countdown , setCountdown] = useState(5)
 
@@ -14,6 +17,12 @@ export default function Home() {
 
     return () => clearInterval(intervalId);
   }, [countdown]);
+
+  useEffect(() => {
+    if(countdown <= 0){
+      router.push("/app")
+    }
+  },[countdown])
 
   return (
     <div className="bg-black h-full w-full flex items-center justify-center gap-4 flex-col p-4 text-white">
