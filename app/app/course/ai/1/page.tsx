@@ -1,8 +1,10 @@
 "use client"
 
 import { ChevronRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function Lesson() {
+  const router = useRouter()
   return (
     <div className="p-6 flex flex-col gap-6">
       <div className="bg-zinc-900 p-4 rounded-xl">
@@ -27,7 +29,9 @@ export default function Lesson() {
       </div>
       <div className="bg-zinc-900 p-4 rounded-xl flex flex-col gap-4 font-thai font-bold">
         <button
-        onClick={() => alert("บทเรียนจะถูกเพิ่มในอนาคตอันใกล้")}
+        onClick={() => {
+          router.push("/app/course/ai/complete")
+        }}
           className="flex gap-1 items-center bg-linear-90 from-lime-300 to-amber-300 text-black justify-center h-11 rounded-xl w-full"
         >
           <ChevronRight />บทถัดไป
