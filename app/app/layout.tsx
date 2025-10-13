@@ -48,7 +48,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       {isMenu && (
         <div className="w-screen h-screen fixed top-0 left-0 bg-black/20 backdrop-blur p-6 flex flex-col">
           <p className="mb-4 bg-zinc-900 px-2 rounded-full font-bold flex items-center w-fit gap-1">
-            AI Search <Star size={"1em"} />
+             <span className=" bg-linear-90 from-lime-300 to-amber-300 text-transparent bg-clip-text flex items-center gap-2 uppercase">AI Search</span> 
           </p>
           <div className="w-full flex items-center gap-4">
             <input
@@ -74,7 +74,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 </div>
               ) : (
                 <div className="flex-1 flex flex-col items-start justify-start font-thai font-bold py-6 gap-6">
-                  <p>ผลการค้นหา</p>
+                  <p className="bg-zinc-900 px-2 rounded-full">ผลการค้นหา</p>
                   <Link
                     href={"/app/course/ai"}
                     className="h-24 flex bg-zinc-900 w-full rounded-xl overflow-hidden text-white"
