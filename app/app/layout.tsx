@@ -122,7 +122,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <Search />
           </button>
         </div>
-        <div className="flex-1">{children}</div>
+        <div className="flex-1 overflow-y-auto">{children}</div>
         <div className="h-22 bg-zinc-900 flex justify-between p-4">
           <Link
             href={"/app"}

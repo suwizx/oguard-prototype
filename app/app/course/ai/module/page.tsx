@@ -40,7 +40,7 @@ export default function ModulePage() {
   }, []);
 
   return (
-    <div className="p-6 flex flex-col gap-4">
+    <div className="p-6 flex flex-col gap-4  overflow-y-auto">
       <div className="w-full aspect-video bg-linear-60 from-lime-300 to-yellow-300 rounded-xl"></div>
       <div>
         <h1 className="text-3xl font-thai font-bold mb-2">
@@ -52,7 +52,7 @@ export default function ModulePage() {
       </div>
       <div className="bg-zinc-900 rounded-xl p-4">
         <h2 className="text-xl font-thai font-bold mb-4 text-white">Learning Path</h2>
-        <div className="w-full h-64 border border-zinc-700 rounded-lg overflow-hidden relative">
+        <div className="w-full h-50 border border-zinc-700 rounded-lg overflow-hidden relative">
           <ForceGraph2D
             ref={graphRef}
             graphData={graphData}
@@ -124,7 +124,7 @@ export default function ModulePage() {
         </div>
         <Link
           href={"/app/course/ai/1"}
-          className="flex gap-2 items-center bg-linear-90 from-lime-300 to-amber-300 text-black justify-center h-10 sm:h-11 rounded-xl text-sm sm:text-base"
+          className="flex gap-2 items-center bg-linear-90 from-lime-300 to-amber-300 text-black justify-center h-11 rounded-xl"
         >
           <Play size={16} /> เรียนต่อ
         </Link>
