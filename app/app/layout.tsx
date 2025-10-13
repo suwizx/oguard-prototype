@@ -123,7 +123,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </button>
         </div>
         <div className="flex-1 overflow-y-auto">{children}</div>
-        <div className="h-22 bg-zinc-900 flex justify-between p-4">
+        <div className="h-22 bg-zinc-900 flex justify-evenly p-4">
           <Link
             href={"/app"}
             className="flex flex-col items-center justify-center text-white font-thai gap-2 font-bold"
