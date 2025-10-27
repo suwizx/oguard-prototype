@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, IBM_Plex_Sans_Thai_Looped } from "next/font/google";
 import "./globals.css";
 import UserProvider from "./provider/UserProvider";
@@ -21,10 +21,25 @@ const ibmThai = IBM_Plex_Sans_Thai_Looped({
 
 export const metadata: Metadata = {
   title: "O-Guard | ให้โอกาสด้วย O-Guard",
-  description: "prototype application from thunder permanent theme | AfterKlass AI Hackathon",
-  openGraph:{
-    images:["https://oguard.suwizx.dev/og.jpg"]
-  }
+  description:
+    "prototype application from thunder permanent theme | AfterKlass AI Hackathon",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "O-Guard",
+  },
+  openGraph: {
+    images: ["https://oguard.suwizx.dev/og.jpg"],
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: "#09090b",
 };
 
 export default function RootLayout({
