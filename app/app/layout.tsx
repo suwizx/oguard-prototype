@@ -12,6 +12,7 @@ import {
   StarHalf,
   User,
   X,
+  Briefcase,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -35,12 +36,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     );
   }
 
-  function searchHanddle(){
-    setSearchLoading(true)
+  function searchHanddle() {
+    setSearchLoading(true);
     setTimeout(() => {
-        setSearchLoading(false)
-    },1000)
-    setSearch(true)
+      setSearchLoading(false);
+    }, 1000);
+    setSearch(true);
   }
 
   return (
@@ -48,7 +49,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       {isMenu && (
         <div className="w-screen h-screen fixed top-0 left-0 bg-black/20 backdrop-blur p-6 flex flex-col">
           <p className="mb-4 bg-zinc-900 px-2 rounded-full font-bold flex items-center w-fit gap-1">
-             <span className=" bg-linear-90 from-lime-300 to-amber-300 text-transparent bg-clip-text flex items-center gap-2 uppercase">AI Search</span> 
+            <span className=" bg-linear-90 from-lime-300 to-amber-300 text-transparent bg-clip-text flex items-center gap-2 uppercase">
+              AI Search
+            </span>
           </p>
           <div className="w-full flex items-center gap-4">
             <input
@@ -56,7 +59,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               readOnly
               value={"อะไรก็ไได้ที่ใช้มือถือ"}
             />
-            <button onClick={() => {searchHanddle()}} className="flex h-12 w-12 bg-zinc-900 rounded-full items-center justify-center">
+            <button
+              onClick={() => {
+                searchHanddle();
+              }}
+              className="flex h-12 w-12 bg-zinc-900 rounded-full items-center justify-center"
+            >
               <Search />
             </button>
             <button
@@ -137,6 +145,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           >
             <User />
             ตัวฉัน
+          </Link>
+          <Link
+            href={"/app/market"}
+            className="flex flex-col items-center justify-center text-white font-thai gap-2 font-bold"
+          >
+            <Briefcase />
+            ตลาดงาน
           </Link>
           <Link
             href={"/app/idol"}

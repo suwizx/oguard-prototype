@@ -5,6 +5,8 @@ interface User {
   username: string;
   avater: string;
   password: string;
+  skills: string[];
+  completedCourses: string[];
 }
 
 interface UserContext {
@@ -36,6 +38,8 @@ export default function UserProvider({ children }: { children: ReactNode }) {
       avater: "https://cdn.discordapp.com/embed/avatars/3.png",
       password: "1234567",
       username: "thunder",
+      skills: ["AI", "Python", "Machine Learning", "Mobile Development"],
+      completedCourses: ["เทรน AI ด้วยมือถือ"],
     });
   }
 
