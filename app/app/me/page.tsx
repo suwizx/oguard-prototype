@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Award,
@@ -9,8 +9,20 @@ import {
   Play,
   ScrollText,
   User2,
+  TrendingUp,
+  Sparkles,
 } from "lucide-react";
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  XAxis,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  Radar,
+} from "recharts";
 import {
   Card,
   CardContent,
@@ -18,33 +30,53 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ChartConfig, ChartContainer } from "@/components/ui/chart";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
 import { Badge } from "@/components/ui/badge";
-import { TrendingDown } from "lucide-react";
 import { useRef, useState } from "react";
 import { useSpring, useMotionValueEvent } from "motion/react";
 
 import Link from "next/link";
 
 const chartData = [
-  { month: "January", mobile: 245 },
-  { month: "February", mobile: 654 },
-  { month: "March", mobile: 387 },
-  { month: "April", mobile: 521 },
-  { month: "May", mobile: 412 },
-  { month: "June", mobile: 598 },
-  { month: "July", mobile: 312 },
-  { month: "August", mobile: 743 },
-  { month: "September", mobile: 489 },
-  { month: "October", mobile: 476 },
-  { month: "November", mobile: 687 },
-  { month: "December", mobile: 198 },
+  { month: "มกราคม", time: 45, label: "ม.ค." },
+  { month: "กุมภาพันธ์", time: 78, label: "ก.พ." },
+  { month: "มีนาคม", time: 92, label: "มี.ค." },
+  { month: "เมษายน", time: 65, label: "เม.ย." },
+  { month: "พฤษภาคม", time: 120, label: "พ.ค." },
+  { month: "มิถุนายน", time: 135, label: "มิ.ย." },
+  { month: "กรกฎาคม", time: 98, label: "ก.ค." },
+  { month: "สิงหาคม", time: 156, label: "ส.ค." },
+  { month: "กันยายน", time: 142, label: "ก.ย." },
+  { month: "ตุลาคม", time: 178, label: "ต.ค." },
+  { month: "พฤศจิกายน", time: 165, label: "พ.ย." },
+  { month: "ธันวาคม", time: 125, label: "ธ.ค." },
 ];
 
 const chartConfig = {
-  mobile: {
-    label: "Mobile",
+  time: {
+    label: "นาที",
     color: "#fcd34d",
+  },
+} satisfies ChartConfig;
+
+// ข้อมูลทักษะของผู้ใช้
+const skillData = [
+  { skill: "Google Workspace", level: 85, color: "#a3e635" },
+  { skill: "Canva", level: 75, color: "#fcd34d" },
+  { skill: "เครื่อง POS", level: 90, color: "#34d399" },
+  { skill: "โซเชียลมีเดีย", level: 70, color: "#fbbf24" },
+  { skill: "ใจรักบริการ", level: 95, color: "#86efac" },
+];
+
+const skillChartConfig = {
+  level: {
+    label: "ระดับทักษะ",
+    color: "#a3e635",
   },
 } satisfies ChartConfig;
 
@@ -120,11 +152,97 @@ export default function Course() {
         </Link>
       </div>
       <div className="flex flex-col gap-4">
-      <label className="font-bold font-thai text-xl">เวลาที่คุณเรียน</label>
-        <div className="flex bg-zinc-900 w-full rounded-xl text-white font-thai">
+        <label className="font-bold font-thai text-xl flex items-center gap-2">
+          <Sparkles className="text-amber-300" size={24} />
+          ทักษะของคุณ
+        </label>
+        <div className="bg-zinc-900 p-4 rounded-xl">
+          <ChartContainer config={skillChartConfig} className="h-80 w-full">
+            <RadarChart
+              data={skillData}
+              margin={{ top: 20, right: 30, bottom: 20, left: 30 }}
+            >
+              <PolarGrid stroke="#3f3f46" strokeDasharray="3 3" />
+              <PolarAngleAxis
+                dataKey="skill"
+                tick={{
+                  fill: "#d4d4d8",
+                  fontSize: 12,
+                  fontFamily: "IBM Plex Sans Thai Looped",
+                  fontWeight: 600,
+                }}
+              />
+              <PolarRadiusAxis
+                angle={90}
+                domain={[0, 100]}
+                tick={false}
+                axisLine={false}
+              />
+              <Radar
+                name="ทักษะ"
+                dataKey="level"
+                stroke="#fcd34d"
+                fill="url(#radarGradient)"
+                fillOpacity={0.6}
+                strokeWidth={2}
+              />
+              <ChartTooltip content={<ChartTooltipContent />} />
+              <defs>
+                <linearGradient id="radarGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#a3e635" stopOpacity={0.8} />
+                  <stop offset="100%" stopColor="#fcd34d" stopOpacity={0.3} />
+                </linearGradient>
+              </defs>
+            </RadarChart>
+          </ChartContainer>
+
+          {/* Skill Badges */}
+          <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-zinc-800">
+            {skillData.map((skill) => (
+              <Badge
+                key={skill.skill}
+                className="bg-gradient-to-r from-lime-300/20 to-amber-300/20 text-lime-300 border-lime-300/30 font-thai"
+              >
+                {skill.skill} • {skill.level}%
+              </Badge>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4">
+        <label className="font-bold font-thai text-xl flex items-center gap-2">
+          <Clock className="text-amber-300" size={24} />
+          เวลาที่คุณเรียน
+        </label>
+
+        {/* Stats Cards */}
+        <div className="grid grid-cols-3 gap-3">
+          <div className="bg-zinc-900 p-3 rounded-xl flex flex-col items-center justify-center font-thai">
+            <p className="text-2xl font-bold text-amber-300">
+              {chartData.reduce((acc, curr) => acc + curr.time, 0)}
+            </p>
+            <p className="text-xs text-zinc-400">นาที/ปี</p>
+          </div>
+          <div className="bg-zinc-900 p-3 rounded-xl flex flex-col items-center justify-center font-thai">
+            <p className="text-2xl font-bold text-lime-300">
+              {Math.round(
+                chartData.reduce((acc, curr) => acc + curr.time, 0) / 12
+              )}
+            </p>
+            <p className="text-xs text-zinc-400">นาที/เดือน</p>
+          </div>
+          <div className="bg-zinc-900 p-3 rounded-xl flex flex-col items-center justify-center font-thai">
+            <p className="text-2xl font-bold text-green-300">
+              {Math.max(...chartData.map((d) => d.time))}
+            </p>
+            <p className="text-xs text-zinc-400">สูงสุด</p>
+          </div>
+        </div>
+
+        <div className="bg-zinc-900 p-4 rounded-xl text-white font-thai">
           <ChartContainer
             ref={chartRef}
-            className="h-54 w-full"
+            className="h-64 w-full"
             config={chartConfig}
           >
             <AreaChart
@@ -143,103 +261,111 @@ export default function Course() {
                 springX.set(
                   chartRef.current?.getBoundingClientRect().width || 0
                 );
-                springY.jump(chartData[chartData.length - 1].mobile);
+                springY.jump(chartData[chartData.length - 1].time);
               }}
               margin={{
                 right: 0,
                 left: 0,
+                top: 20,
               }}
             >
               <CartesianGrid
                 vertical={false}
                 strokeDasharray="3 3"
+                stroke="#3f3f46"
                 horizontalCoordinatesGenerator={(props) => {
                   const { height } = props;
-                  return [0, height - 30];
+                  return [0, height / 2, height - 30];
                 }}
               />
               <XAxis
-                dataKey="month"
+                dataKey="label"
                 tickLine={false}
                 axisLine={false}
                 tickMargin={8}
-                tickFormatter={(value) => value.slice(0, 3)}
+                tick={{
+                  fill: "#a1a1aa",
+                  fontSize: 11,
+                  fontFamily: "IBM Plex Sans Thai Looped",
+                }}
               />
               <Area
-                dataKey="mobile"
+                dataKey="time"
                 type="monotone"
-                fill="url(#gradient-cliped-area-mobile)"
-                fillOpacity={0.4}
-                stroke="var(--color-mobile)"
+                fill="url(#gradient-cliped-area-time)"
+                fillOpacity={0.5}
+                stroke="#fcd34d"
+                strokeWidth={2}
                 clipPath={`inset(0 ${
                   Number(chartRef.current?.getBoundingClientRect().width) - axis
                 } 0 0)`}
               />
               <line
                 x1={axis}
-                y1={0}
+                y1={20}
                 x2={axis}
                 y2={"85%"}
-                stroke="var(--color-mobile)"
+                stroke="#fcd34d"
                 strokeDasharray="3 3"
                 strokeLinecap="round"
-                strokeOpacity={0.2}
+                strokeOpacity={0.3}
               />
               <rect
-                x={axis - 50}
+                x={axis - 35}
                 y={0}
-                width={50}
-                height={18}
-                fill="var(--color-mobile)"
+                width={70}
+                height={22}
+                fill="#fcd34d"
+                rx={4}
               />
               <text
-                x={axis - 25}
-                fontWeight={600}
-                y={13}
+                x={axis}
+                fontWeight={700}
+                y={15}
                 textAnchor="middle"
-                fill="var(--primary-foreground)"
+                fill="#18181b"
+                fontSize={13}
+                fontFamily="IBM Plex Sans Thai Looped"
               >
-                ${springY.get().toFixed(0)}
+                {springY.get().toFixed(0)} นาที
               </text>
-              {/* this is a ghost line behind graph */}
+              {/* Ghost line */}
               <Area
-                dataKey="mobile"
+                dataKey="time"
                 type="monotone"
                 fill="none"
-                stroke="var(--color-mobile)"
-                strokeOpacity={0.1}
+                stroke="#fcd34d"
+                strokeOpacity={0.15}
+                strokeWidth={2}
               />
               <defs>
                 <linearGradient
-                  id="gradient-cliped-area-mobile"
+                  id="gradient-cliped-area-time"
                   x1="0"
                   y1="0"
                   x2="0"
                   y2="1"
                 >
-                  <stop
-                    offset="5%"
-                    stopColor="var(--color-mobile)"
-                    stopOpacity={0.2}
-                  />
-                  <stop
-                    offset="95%"
-                    stopColor="var(--color-mobile)"
-                    stopOpacity={0}
-                  />
-                  <mask id="mask-cliped-area-chart">
-                    <rect
-                      x={0}
-                      y={0}
-                      width={"50%"}
-                      height={"100%"}
-                      fill="white"
-                    />
-                  </mask>
+                  <stop offset="5%" stopColor="#fcd34d" stopOpacity={0.4} />
+                  <stop offset="95%" stopColor="#fcd34d" stopOpacity={0.05} />
                 </linearGradient>
               </defs>
             </AreaChart>
           </ChartContainer>
+
+          {/* Progress Message */}
+          <div className="mt-4 pt-4 border-t border-zinc-800 flex items-start gap-3">
+            <TrendingUp
+              className="text-lime-300 flex-shrink-0 mt-1"
+              size={20}
+            />
+            <div className="flex-1">
+              <p className="text-sm font-bold text-lime-300">เยี่ยมมาก! 🎉</p>
+              <p className="text-xs text-zinc-400 mt-1">
+                คุณเรียนมากขึ้น 23% เมื่อเทียบกับเดือนที่แล้ว ทำต่อไปแบบนี้นะ!
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
