@@ -38,7 +38,7 @@ export default function UserProvider({ children }: { children: ReactNode }) {
       avater: "https://cdn.discordapp.com/embed/avatars/3.png",
       password: "1234567",
       username: "thunder",
-      skills: ["AI", "Python", "Machine Learning", "Mobile Development"],
+      skills: ["Canva", "POS", "Google Workspace", "แว้น"],
       completedCourses: ["เทรน AI ด้วยมือถือ"],
     });
   }
