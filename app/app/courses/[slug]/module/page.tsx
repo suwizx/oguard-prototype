@@ -7,6 +7,8 @@ import ForceGraph2D from "react-force-graph-2d";
 import { Play, ChevronLeft } from "lucide-react";
 import { useParams } from "next/navigation";
 
+export const runtime = "edge";
+
 export default function ModulePage() {
   const params = useParams();
   const slug = params.slug as string;

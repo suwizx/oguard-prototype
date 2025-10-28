@@ -2,6 +2,8 @@ import { coursesData } from "@/lib/courses";
 import { Book, Building, Clock, ChevronLeft, User2 } from "lucide-react";
 import Link from "next/link";
 
+export const runtime = "edge";
+
 export default function CourseDetailPage({
   params,
 }: {
