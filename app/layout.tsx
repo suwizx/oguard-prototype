@@ -50,7 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${ibmThai.variable} antialiased bg-zinc-950 text-white flex dark h-screen w-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} ${ibmThai.variable} antialiased bg-zinc-950 text-white flex dark h-dvh w-dvw`}
       >
         <div className="h-screen w-screen sm:hidden flex">
           <UserProvider>{children}</UserProvider>
