@@ -106,7 +106,7 @@ export default function ModulePage() {
           <p className="text-base">0%</p>
         </div>
         <Link
-          href="#"
+          href="/app/course/ai/1"
           className="flex gap-2 items-center bg-gradient-to-r from-lime-300 to-amber-300 text-black justify-center h-11 rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all"
         >
           <Play size={16} /> เริ่มเรียน

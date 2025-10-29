@@ -1,6 +1,6 @@
 import { coursesData } from "@/lib/courses";
 import Link from "next/link";
-import { ArrowRight, GraduationCap } from "lucide-react";
+import { ArrowRight, GraduationCap, Sparkles } from "lucide-react";
 
 export default function CoursesPage() {
   return (
@@ -15,10 +15,32 @@ export default function CoursesPage() {
         </p>
       </div>
 
+      {/* AI Suggestion Card */}
+      <Link
+        href="/app/suggest"
+        className="bg-gradient-to-br from-lime-300/10 to-amber-300/10 border-2 border-lime-300/30 p-5 rounded-2xl font-thai hover:border-lime-300/50 transition-all"
+      >
+        <div className="flex items-start gap-3">
+          <Sparkles className="text-amber-300 flex-shrink-0 mt-1" size={24} />
+          <div className="flex-1">
+            <h2 className="text-xl font-bold text-lime-300 mb-2">
+              ให้ AI แนะนำหลักสูตร
+            </h2>
+            <p className="text-sm text-zinc-300 mb-3">
+              ไม่แน่ใจว่าจะเลือกหลักสูตรไหน? ให้ AI ช่วยวิเคราะห์และแนะนำหลักสูตรที่เหมาะกับคุณ
+            </p>
+            <div className="flex items-center gap-2 text-sm font-bold text-amber-300">
+              <span>เริ่มทำแบบทดสอบ</span>
+              <ArrowRight size={16} />
+            </div>
+          </div>
+        </div>
+      </Link>
+
       <div className="flex flex-col gap-4">
         {coursesData.map((course) => (
           <Link
-            href={`/app/courses/${course.slug}`}
+            href="/app/course/ai"
             key={course.slug}
             className="bg-zinc-900 rounded-2xl overflow-hidden text-white font-thai flex items-center hover:bg-zinc-800 transition-all border border-zinc-800 hover:border-zinc-700"
           >
@@ -34,7 +56,7 @@ export default function CoursesPage() {
         ))}
       </div>
 
-      <div className="bg-gradient-to-br from-lime-300/10 to-amber-300/10 border border-lime-300/20 p-5 rounded-2xl font-thai text-center">
+      <div className="bg-zinc-900 p-5 rounded-2xl font-thai text-center border border-zinc-800">
         <p className="text-sm text-zinc-300">
           💡 <span className="font-bold">เคล็ดลับ:</span>{" "}
           เลือกหลักสูตรที่ตรงกับความสนใจของคุณ

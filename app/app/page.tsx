@@ -18,7 +18,7 @@ export default function Page() {
       <div className="flex flex-col gap-4">
         <label className="font-bold font-thai text-xl">กำลังเรียน</label>
         <Link
-          href={`/app/courses/${currentlyLearning.slug}`}
+          href="/app/course/ai"
           className="h-24 flex bg-zinc-900 w-full rounded-xl overflow-hidden text-white font-thai"
         >
           <div className="bg-gradient-to-b from-lime-300 to-amber-300 h-full aspect-square" />

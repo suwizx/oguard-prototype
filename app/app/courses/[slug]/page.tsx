@@ -56,7 +56,7 @@ export default function CourseDetailPage({
           <p className="text-base">0%</p>
         </div>
         <Link
-          href={`/app/courses/${course.slug}/module`}
+          href="/app/course/ai/module"
           className="text-black justify-center h-12 rounded-xl bg-zinc-950 flex items-center hover:scale-[1.02] transition-transform"
         >
           <span className="flex gap-2 items-center w-full justify-center bg-gradient-to-r from-lime-300 to-amber-300 bg-clip-text text-transparent">
