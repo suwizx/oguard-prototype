@@ -52,11 +52,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${ibmThai.variable} antialiased bg-zinc-950 text-white flex dark h-dvh w-dvw`}
       >
-        <div className="h-screen w-screen sm:hidden flex">
+        <div className="h-dvh w-dvw sm:hidden flex">
           <UserProvider>{children}</UserProvider>
         </div>
         <div
-          className="h-screen w-screen hidden sm:flex items-center justify-center text-xl p-4 font-bold bg-black text-white"
+          className="h-dvh w-dvw hidden sm:flex items-center justify-center text-xl p-4 font-bold bg-black text-white"
           style={ibmThai.style}
         >
           กรุณาเปิดด้วยโทรศัพท์มือถือ
